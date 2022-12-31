@@ -1,3 +1,7 @@
+import 'reflect-metadata';
+import { fetchStormAlerts } from "./client/storm/StormAlertController";
+import { fetchStoreOffers } from "./client/store/StoreOfferController";
+
 /**
  * Welcome to Cloudflare Workers! This is your first scheduled worker.
  *
@@ -9,7 +13,6 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/runtime-apis/scheduled-event/
  */
-
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
 	// MY_KV_NAMESPACE: KVNamespace;
@@ -27,6 +30,7 @@ export default {
 		env: Env,
 		ctx: ExecutionContext
 	): Promise<void> {
-		console.log(`Hello World!`);
+		await fetchStoreOffers().then(offers => console.log(offers))
+		await fetchStormAlerts().then(alerts => console.log(alerts))
 	},
-};
+}
