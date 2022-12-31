@@ -22,6 +22,8 @@ export interface Env {
 	//
 	// Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
 	// MY_BUCKET: R2Bucket;
+	STORE_OFFER_NOTIFICATION_WEBHOOK_URL: string,
+	STORM_ALERT_NOTIFICATION_WEBHOOK_URL: string
 }
 
 export default {
