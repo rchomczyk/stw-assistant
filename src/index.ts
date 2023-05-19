@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { fetchStormAlerts } from "./client/storm/StormAlertController";
-import { fetchStoreOffers } from "./client/store/StoreOfferController";
+import { DiscordClient } from "./client/notification/discord/DiscordClient";
+import { StormAlertNotifier } from "./client/notification/StormAlertNotifier";
 
 /**
  * Welcome to Cloudflare Workers! This is your first scheduled worker.
@@ -22,17 +22,22 @@ export interface Env {
 	//
 	// Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
 	// MY_BUCKET: R2Bucket;
-	STORE_OFFER_NOTIFICATION_WEBHOOK_URL: string,
-	STORM_ALERT_NOTIFICATION_WEBHOOK_URL: string
+	STW_ASSISTANT_NAMESPACE: KVNamespace
 }
 
 export default {
-	async scheduled(
-		controller: ScheduledController,
-		env: Env,
-		ctx: ExecutionContext
-	): Promise<void> {
-		await fetchStoreOffers().then(offers => console.log(offers))
-		await fetchStormAlerts().then(alerts => console.log(alerts))
+
+	async fetch(env: Env, ctx: ExecutionContext): Promise<void> {
+		// The fetch handler is empty, but anyway, we need
+		// to have it as wrangler causes a lot of noise
+		// while it is missing.
 	},
+
+	async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+		const client = new DiscordClient()
+
+		const stormAlertNotificationTarget = await env.STW_ASSISTANT_NAMESPACE.get("STORM_ALERT_NOTIFICATION_WEBHOOK_URL")
+		const stormAlertNotifier = new StormAlertNotifier(client, stormAlertNotificationTarget)
+		await stormAlertNotifier.notify()
+	}
 }

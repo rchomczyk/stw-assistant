@@ -1,6 +1,9 @@
 name = "stw-assistant"
 main = "src/index.ts"
 compatibility_date = "2022-12-31"
+kv_namespaces = [
+    { binding = "STW_ASSISTANT_NAMESPACE", id = "eb79db42ed3a40198b0620f7ee4fedb5", preview_id = "db5af1e2c3fe40e58660cb27323cd91f" },
+]
 
 [triggers]
 crons = [ "5 1 * * *" ]
