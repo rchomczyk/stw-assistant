@@ -1,6 +1,5 @@
-import { Exclude, Expose } from "class-transformer";
+import { Expose } from "class-transformer";
 
-@Exclude()
 export class StoreOffer {
 
     @Expose()

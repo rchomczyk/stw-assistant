@@ -3,17 +3,19 @@ export class EmbedMessage {
     title: string
     color: number
     fields: Array<EmbedField>
-    thumbnail?: EmbedThumbnail
     description?: string
+    timestamp?: string
+    thumbnail?: EmbedThumbnail
     footer?: EmbedFooter
     author?: EmbedAuthor
 
-    constructor(title: string, color: number, fields: Array<EmbedField>, thumbnail?: EmbedThumbnail, description?: string, footer?: EmbedFooter, author?: EmbedAuthor) {
+    constructor(title: string, color: number, fields: Array<EmbedField>, description?: string, timestamp?: string, thumbnail?: EmbedThumbnail, footer?: EmbedFooter, author?: EmbedAuthor) {
         this.title = title
         this.color = color
         this.fields = fields
-        this.thumbnail = thumbnail
         this.description = description
+        this.timestamp = timestamp
+        this.thumbnail = thumbnail
         this.footer = footer
         this.author = author
     }

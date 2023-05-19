@@ -27,17 +27,17 @@ export interface Env {
 
 export default {
 
-	async fetch(env: Env, ctx: ExecutionContext): Promise<void> {
-		// The fetch handler is empty, but anyway, we need
-		// to have it as wrangler causes a lot of noise
-		// while it is missing.
+	async fetch(env: Env, ctx: ExecutionContext): Promise<Response> {
+		return new Response("Hello worker!")
 	},
 
-	async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+	async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const client = new DiscordClient()
 
 		const stormAlertNotificationTarget = await env.STW_ASSISTANT_NAMESPACE.get("STORM_ALERT_NOTIFICATION_WEBHOOK_URL")
 		const stormAlertNotifier = new StormAlertNotifier(client, stormAlertNotificationTarget)
 		await stormAlertNotifier.notify()
+
+		return new Response("Hello worker!")
 	}
 }

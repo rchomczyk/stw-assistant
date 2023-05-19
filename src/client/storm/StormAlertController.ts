@@ -1,4 +1,4 @@
-import { StormAlertZoned } from "./StormAlert";
+import { StormAlertZone, StormAlertZoned } from "./StormAlert";
 
 export async function fetchStormAlerts(): Promise<StormAlertZoned[]> {
     const resp = await fetch("https://freethevbucks.com/apiformissiontracking.json")
@@ -8,6 +8,6 @@ export async function fetchStormAlerts(): Promise<StormAlertZoned[]> {
     const scopes = [ "Stonewood", "Plankerton", "Canny Valley", "Twine Peaks" ]
 
     return scopes
-        .map(scope => new StormAlertZoned(scope, alerts[scope]))
+        .map(scope => new StormAlertZoned(StormAlertZone.parse(scope), alerts[scope]))
         .map(scope => new StormAlertZoned(scope.scope, Object.keys(scope.missions).flatMap((inner: any) => scope.missions[inner])))
 }
