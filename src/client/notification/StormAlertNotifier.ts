@@ -9,12 +9,10 @@ export class StormAlertNotifier {
 
     private readonly matchers = [ "V-bucks", "(Legendary)", "Mythic" ]
     private readonly iconUrl: string = "https://static.wikia.nocookie.net/fortnite/images/e/eb/V-Bucks_-_Icon_-_Fortnite.png/revision/latest?cb=20170806013747"
-    private client: DiscordClient
-    private readonly target: string | null
 
-    constructor(client: DiscordClient, target: string | null) {
-        this.client = client
-        this.target = target
+    constructor(public readonly client: DiscordClient,
+                public readonly target: string | null) {
+
     }
 
     async notify(): Promise<void> {
