@@ -37,7 +37,7 @@ export class StormAlertNotifier {
     }
 
     private getWebhook(components: Array<EmbedMessage>) {
-        return new Webhook("stw-assistant", components, this.iconUrl)
+        return new Webhook("stw-assistant", components, "<@&1109105344426283030>", this.iconUrl)
     }
 
     private getMessageWithAlerts(location: StormAlertZone, missions: Array<StormAlert>): EmbedMessage {

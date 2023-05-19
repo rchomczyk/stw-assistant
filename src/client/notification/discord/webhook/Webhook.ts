@@ -4,11 +4,13 @@ export class Webhook {
 
     username: string
     embeds: Array<EmbedMessage>
+    content: string
     avatar?: string
 
-    constructor(username: string, embeds: Array<EmbedMessage>, avatar?: string) {
+    constructor(username: string, embeds: Array<EmbedMessage>, content: string, avatar?: string) {
         this.username = username
-        this.avatar = avatar
         this.embeds = embeds
+        this.content = content
+        this.avatar = avatar
     }
 }
