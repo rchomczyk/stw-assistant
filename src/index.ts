@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { DiscordClient } from "./client/notification/discord/DiscordClient";
 import { StormAlertNotifier } from "./client/notification/StormAlertNotifier";
+import { StormOfferNotifier } from "./client/notification/StormOfferNotifier";
 
 /**
  * Welcome to Cloudflare Workers! This is your first scheduled worker.
@@ -37,6 +38,10 @@ export default {
 		const stormAlertNotificationTarget = await env.STW_ASSISTANT_NAMESPACE.get("STORM_ALERT_NOTIFICATION_WEBHOOK_URL")
 		const stormAlertNotifier = new StormAlertNotifier(client, stormAlertNotificationTarget)
 		await stormAlertNotifier.notify()
+
+		const storeOfferNotificationTarget = await env.STW_ASSISTANT_NAMESPACE.get("STORE_OFFER_NOTIFICATION_WEBHOOK_URL")
+		const storeOfferNotifier = new StormOfferNotifier(client, storeOfferNotificationTarget)
+		await storeOfferNotifier.notify()
 
 		return new Response("Hello worker!")
 	}
