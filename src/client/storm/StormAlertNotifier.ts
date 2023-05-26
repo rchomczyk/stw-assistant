@@ -1,13 +1,13 @@
-import { StormAlert, StormAlertZone } from "../storm/StormAlert";
-import { fetchStormAlerts } from "../storm/StormAlertController";
-import { EmbedMessage, EmbedField, EmbedThumbnail, EmbedFooter } from "./discord/component/EmbedMessage";
-import { DiscordClient } from "./discord/DiscordClient";
-import { Webhook } from "./discord/webhook/Webhook";
+import { StormAlert, StormAlertZone } from "./StormAlert";
+import { fetchStormAlerts } from "./StormAlertController";
+import { EmbedMessage, EmbedField, EmbedThumbnail, EmbedFooter } from "../notification/discord/component/EmbedMessage";
+import { DiscordClient } from "../notification/discord/DiscordClient";
+import { Webhook } from "../notification/discord/webhook/Webhook";
 import moment from "moment";
 
 export class StormAlertNotifier {
 
-    private readonly matchers = [ "V-bucks", "(Legendary)", "Mythic" ]
+    private readonly matchers = [ "V-Bucks", "(Legendary)", "Mythic" ]
     private readonly iconUrl: string = "https://static.wikia.nocookie.net/fortnite/images/e/eb/V-Bucks_-_Icon_-_Fortnite.png/revision/latest?cb=20170806013747"
 
     constructor(public readonly client: DiscordClient,

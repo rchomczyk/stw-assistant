@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { DiscordClient } from "./client/notification/discord/DiscordClient";
-import { StormAlertNotifier } from "./client/notification/StormAlertNotifier";
-import { StormOfferNotifier } from "./client/notification/StormOfferNotifier";
+import { StormAlertNotifier } from "./client/storm/StormAlertNotifier";
+import { StormOfferNotifier } from "./client/store/StormOfferNotifier";
 
 /**
  * Welcome to Cloudflare Workers! This is your first scheduled worker.

@@ -1,8 +1,8 @@
-import { DiscordClient } from "./discord/DiscordClient";
-import { fetchStoreOffers } from "../store/StoreOfferController";
-import { StoreOffer } from "../store/StoreOffer";
-import { EmbedField, EmbedFooter, EmbedMessage, EmbedThumbnail } from "./discord/component/EmbedMessage";
-import { Webhook } from "./discord/webhook/Webhook";
+import { DiscordClient } from "../notification/discord/DiscordClient";
+import { fetchStoreOffers } from "./StoreOfferController";
+import { StoreOffer } from "./StoreOffer";
+import { EmbedField, EmbedFooter, EmbedMessage, EmbedThumbnail } from "../notification/discord/component/EmbedMessage";
+import { Webhook } from "../notification/discord/webhook/Webhook";
 import moment from "moment";
 
 export class StormOfferNotifier {
